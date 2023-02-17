@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -17,6 +18,8 @@ const initialState = {
 function RegisterForm({ user, updateUser }) {
   const [formData, setFormData] = useState(initialState);
 
+  const router = useRouter();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -30,8 +33,8 @@ function RegisterForm({ user, updateUser }) {
     const payload = {
       ...formData, uid: user.uid,
     };
-    registerUser(payload).then(() => updateUser(user.uid)); // route to home page
-    console.warn(payload);
+    registerUser(payload).then(() => updateUser(user.uid)).then(() => router.push('/'));
+    // console.warn(payload);
   };
 
   return (

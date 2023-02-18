@@ -9,7 +9,7 @@ import { createRecord, updateRecord } from '../../api/recordData';
 import { getPhysicians } from '../../api/physicianData';
 import { useAuth } from '../../utils/context/authContext';
 
-function RecordForm({ recordObj }) {
+function MedRecordForm({ recordObj }) {
   const [formInput, setFormInput] = useState({
     id: 0,
     name: '',
@@ -34,6 +34,7 @@ function RecordForm({ recordObj }) {
 
   useEffect(() => {
     getPhysicians().then(setPhysicians);
+    console.warn(physicians);
     if (recordObj?.id) setFormInput(recordObj);
   }, [recordObj]);
 
@@ -48,10 +49,10 @@ function RecordForm({ recordObj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (recordObj?.id) {
-      updateRecord(formInput, recordObj.id, user).then(() => router.push('/hikes'));
+      updateRecord(formInput, recordObj.id, user).then(() => router.push('/records'));
     } else {
-      createRecord(user.uid, ...formInput).then(() => {
-        router.push('/hikes');
+      createRecord(formInput, user.uid).then(() => {
+        router.push('/records');
       });
     }
   };
@@ -67,8 +68,8 @@ function RecordForm({ recordObj }) {
               <Form.Control type="text" placeholder="Enter Medication Record" name="name" value={formInput.name} onChange={handleChange} required />
             </FloatingLabel>
 
-            <FloatingLabel controlId="floatingInput3" label="Medication Dosage " className="mb-3">
-              <Form.Control type="text" placeholder="Enter dosage" name="dosage" value={formInput.dosage} onChange={handleChange} required />
+            <FloatingLabel controlId="floatingInput3" label="Medication Dosage in mg" className="mb-3">
+              <Form.Control type="text" placeholder="Enter dosage in mg" name="dosage" value={formInput.dosage} onChange={handleChange} required />
             </FloatingLabel>
 
             <FloatingLabel controlId="floatingInput3" label="Date Prescribed" className="mb-3">
@@ -101,7 +102,7 @@ function RecordForm({ recordObj }) {
   );
 }
 
-RecordForm.propTypes = {
+MedRecordForm.propTypes = {
   recordObj: PropTypes.shape({
     id: PropTypes.number,
     user: PropTypes.shape({
@@ -131,4 +132,4 @@ RecordForm.propTypes = {
   }).isRequired,
 };
 
-export default RecordForm;
+export default MedRecordForm;

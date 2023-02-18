@@ -9,20 +9,8 @@ import { useAuth } from '../../utils/context/authContext';
 
 function PhysicianForm({ physicianObj }) {
   const { user } = useAuth();
-  const [formInput, setFormInput] = useState({
-    physician: {
-      id: 0,
-      name: '',
-      specialty: '',
-      email: '',
-      phoneNumber: '',
-      location: '',
-    },
-    user: {
-      id: 0,
-      uid: '',
-    },
-  });
+  const [formInput, setFormInput] = useState({});
+
   const router = useRouter();
 
   useEffect(() => {
@@ -41,10 +29,11 @@ function PhysicianForm({ physicianObj }) {
     e.preventDefault();
     if (physicianObj?.id) {
       updatePhysician(formInput, physicianObj.id, user)
-        .then(() => router.push('/physicians'));
+        .then(() => router.push(`/physicians/user/${user.id}`));
     } else {
-      createPhysician(user.uid, ...formInput).then(() => {
-        router.push('/physicians');
+      // console.warn(user.id, formInput);
+      createPhysician(user.id, formInput).then(() => {
+        router.push(`/physicians/user/${user.id}`);
       });
     }
   };
@@ -56,11 +45,11 @@ function PhysicianForm({ physicianObj }) {
       <div className="card-body">
         <Form onSubmit={handleSubmit}>
           <FloatingLabel controlId="floatingInput1" label="Physician Name" className="mb-3">
-            <Form.Control type="text" placeholder="Enter Physician Name" name="title" value={formInput.name} onChange={handleChange} required />
+            <Form.Control type="text" placeholder="Enter Physician Name" name="name" value={formInput.name} onChange={handleChange} required />
           </FloatingLabel>
 
           <FloatingLabel controlId="floatingInput2" label="Physician Specialty" className="mb-3">
-            <Form.Control type="text" placeholder="Enter physician specialty" name="image_url" value={formInput.specialty} onChange={handleChange} required />
+            <Form.Control type="text" placeholder="Enter physician specialty" name="specialty" value={formInput.specialty} onChange={handleChange} required />
           </FloatingLabel>
 
           <FloatingLabel controlId="floatingInput3" label="Physician Email" className="mb-3">
@@ -88,6 +77,11 @@ function PhysicianForm({ physicianObj }) {
 PhysicianForm.propTypes = {
   physicianObj: PropTypes.shape({
     id: PropTypes.number,
+    name: PropTypes.string,
+    specialty: PropTypes.string,
+    email: PropTypes.string,
+    location: PropTypes.string,
+    phoneNumber: PropTypes.string,
     user: PropTypes.shape({
       id: PropTypes.number,
       uid: PropTypes.string,
@@ -99,12 +93,7 @@ PhysicianForm.propTypes = {
       location: PropTypes.string,
       localPharmacy: PropTypes.string,
     }),
-    record: PropTypes.string,
-    name: PropTypes.string,
-    specialty: PropTypes.string,
-    email: PropTypes.string,
-    location: PropTypes.string,
-    phoneNumber: PropTypes.string,
+    // record: PropTypes.string,
   }).isRequired,
 };
 

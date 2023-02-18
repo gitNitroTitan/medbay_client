@@ -14,26 +14,24 @@ const getSingleRecord = (id) => new Promise((resolve, reject) => {
     .then((data) => {
       resolve({
         id: data.id,
-        board: data.board,
+        // board: data.board,
         user: data.user,
         name: data.name,
-        url: data.url,
-        latitude: Number(data.latitude),
-        longitude: Number(data.longitude),
-        description: data.description,
+        dosage: data.dosage,
+        treatment: data.treatment,
+        date_prescribed: data.datePrescribed,
       });
     })
     .catch((error) => reject(error));
 });
 
-const updateRecord = (hike, id) => new Promise((resolve, reject) => {
+const updateRecord = (record, id) => new Promise((resolve, reject) => {
   const recordObj = {
-    board: Number(hike.boardId),
-    name: hike.name,
-    url: hike.url,
-    latitude: hike.latitude,
-    longitude: hike.longitude,
-    description: hike.description,
+    physician: Number(record.physicianId),
+    name: record.name,
+    dosage: record.dosage,
+    treatment: record.treatment,
+    date_prescribed: record.datePrescribed,
   };
   fetch(`${clientCredentials.databaseURL}/records/${id}`, {
     method: 'PUT',
@@ -44,15 +42,14 @@ const updateRecord = (hike, id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const createRecord = (user, hike, latitude, longitude, url) => new Promise((resolve, reject) => {
+const createRecord = (user, record) => new Promise((resolve, reject) => {
   const recordObj = {
     user,
-    board: Number(hike.boardId),
-    name: hike.name,
-    url,
-    latitude,
-    longitude,
-    description: hike.description,
+    physician: Number(record.physicianId),
+    name: record.name,
+    dosage: record.dosage,
+    treatment: record.treatment,
+    date_prescribed: record.datePrescribed,
   };
   fetch(`${clientCredentials.databaseURL}/records`, {
     method: 'POST',

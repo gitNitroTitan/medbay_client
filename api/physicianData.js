@@ -8,15 +8,24 @@ const getPhysicians = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getPhysiciansByUser = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/physicians?user=${id}`)
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
 const getSinglePhysician = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/physicians/${id}`)
     .then((response) => response.json())
     .then((data) => {
       resolve({
         id: data.id, /// fix this data to match physician, make sure with levelup repo also
-        title: data.title,
-        image_url: data.image_url,
-        description: data.description,
+        name: data.name,
+        specialty: data.specialty,
+        email: data.email,
+        phoneNumber: data.phone_number,
+        location: data.location,
       });
     })
     .catch((error) => reject(error));
@@ -25,9 +34,11 @@ const getSinglePhysician = (id) => new Promise((resolve, reject) => {
 const createPhysician = (user, physician) => new Promise((resolve, reject) => {
   const physicianObj = {
     user,
-    title: physician.title,
-    image_url: physician.image_url,
-    description: physician.description,
+    name: physician.name,
+    specialty: physician.specialty,
+    email: physician.email,
+    phone_number: physician.phoneNumber,
+    location: physician.location,
   };
   fetch(`${clientCredentials.databaseURL}/physicians`, {
     method: 'POST',
@@ -43,9 +54,11 @@ const createPhysician = (user, physician) => new Promise((resolve, reject) => {
 const updatePhysician = (physician) => new Promise((resolve, reject) => {
   const physicianObj = {
     // hike: Number(physician.hikeId),
-    title: physician.title,
-    image_url: physician.image_url,
-    description: physician.description,
+    name: physician.name,
+    specialty: physician.specialty,
+    email: physician.email,
+    phone_number: physician.phoneNumber,
+    location: physician.location,
   };
   fetch(`${clientCredentials.databaseURL}/physicians/${physician.id}`, {
     method: 'PUT',
@@ -90,5 +103,5 @@ const deletePhysicianRecords = (physicianId) => new Promise((resolve, reject) =>
 });
 
 export {
-  getPhysicians, createPhysician, updatePhysician, getSinglePhysician, deleteSinglePhysician, viewPhysicianDetails, getPhysicianRecords, deletePhysicianRecords,
+  getPhysicians, createPhysician, updatePhysician, getSinglePhysician, deleteSinglePhysician, viewPhysicianDetails, getPhysicianRecords, deletePhysicianRecords, getPhysiciansByUser,
 };

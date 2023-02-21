@@ -53,7 +53,6 @@ const createPhysician = (user, physician) => new Promise((resolve, reject) => {
 
 const updatePhysician = (physician) => new Promise((resolve, reject) => {
   const physicianObj = {
-    // hike: Number(physician.hikeId),
     name: physician.name,
     specialty: physician.specialty,
     email: physician.email,
@@ -69,7 +68,7 @@ const updatePhysician = (physician) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const deleteSinglePhysician = (id) => new Promise((resolve, reject) => {
+const deletePhysician = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/physicians/${id}`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
@@ -97,11 +96,11 @@ const deletePhysicianRecords = (physicianId) => new Promise((resolve, reject) =>
     .then((recordsArray) => {
       const deleteRecordsPromises = recordsArray.map((record) => deleteRecord(record.id));
       Promise.all(deleteRecordsPromises).then(() => {
-        deleteSinglePhysician(physicianId).then(resolve);
+        deletePhysician(physicianId).then(resolve);
       });
     }).catch((error) => reject(error));
 });
 
 export {
-  getPhysicians, createPhysician, updatePhysician, getSinglePhysician, deleteSinglePhysician, viewPhysicianDetails, getPhysicianRecords, deletePhysicianRecords, getPhysiciansByUser,
+  getPhysicians, createPhysician, updatePhysician, getSinglePhysician, deletePhysician, viewPhysicianDetails, getPhysicianRecords, deletePhysicianRecords, getPhysiciansByUser,
 };

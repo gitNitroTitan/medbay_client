@@ -6,35 +6,16 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { createRecord, updateRecord } from '../../api/recordData';
-import { getPhysicians } from '../../api/physicianData';
+// import getUsersById from '../../api/userData';
 import { useAuth } from '../../utils/context/authContext';
 
 function MedRecordForm({ recordObj }) {
-  const [formInput, setFormInput] = useState({
-    id: 0,
-    name: '',
-    dosage: '',
-    datePrescribed: '',
-    physician: {
-      id: 0,
-      name: '',
-      specialty: '',
-      email: '',
-      phoneNumber: '',
-      location: '',
-    },
-    user: {
-      id: 0,
-      uid: '',
-    },
-  });
   const { user } = useAuth();
-  const [physicians, setPhysicians] = useState([]);
+  const [formInput, setFormInput] = useState({});
+
   const router = useRouter();
 
   useEffect(() => {
-    getPhysicians().then(setPhysicians);
-    console.warn(physicians);
     if (recordObj?.id) setFormInput(recordObj);
   }, [recordObj]);
 
@@ -49,10 +30,10 @@ function MedRecordForm({ recordObj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (recordObj?.id) {
-      updateRecord(formInput, recordObj.id, user).then(() => router.push('/records'));
+      updateRecord(formInput, recordObj.id, user).then(() => router.push(`/records/user/${user.id}`));
     } else {
-      createRecord(formInput, user.uid).then(() => {
-        router.push('/records');
+      createRecord(user.id, formInput).then(() => {
+        router.push(`/records/user/${user.id}`);
       });
     }
   };
@@ -72,24 +53,14 @@ function MedRecordForm({ recordObj }) {
               <Form.Control type="text" placeholder="Enter dosage in mg" name="dosage" value={formInput.dosage} onChange={handleChange} required />
             </FloatingLabel>
 
+            <FloatingLabel controlId="floatingInput3" label="Treatment" className="mb-3">
+              <Form.Control type="text" placeholder="Treatment For" name="treatment" value={formInput.treatment} onChange={handleChange} required />
+            </FloatingLabel>
+
             <FloatingLabel controlId="floatingInput3" label="Date Prescribed" className="mb-3">
               <Form.Control type="text" placeholder="Enter date prescribed" name="datePrescribed" value={formInput.datePrescribed} onChange={handleChange} required />
             </FloatingLabel>
 
-            <Form.Select className="mb-3" aria-label="Physician" name="physicianId" onChange={handleChange} required>
-              {formInput.id ? <option value="">{formInput.physician?.name}</option> : <option value="">Select Physician</option>}
-              {
-            physicians.map((physician) => (
-              <option
-                key={physician.id}
-                value={physician.id}
-                defaultValue={physician.id === formInput.physicianId}
-              >
-                {physician.name}
-              </option>
-            ))
-          }
-            </Form.Select>
             <Button className="btn-submit" variant="secondary" type="submit">
               {formInput.id ? 'Update' : 'Create'} Record
             </Button>
@@ -103,32 +74,23 @@ function MedRecordForm({ recordObj }) {
 }
 
 MedRecordForm.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.number,
+    uid: PropTypes.string,
+    name: PropTypes.string,
+    age: PropTypes.string,
+    bio: PropTypes.string,
+    image_url: PropTypes.string,
+    email: PropTypes.string,
+    location: PropTypes.string,
+    localPharmacy: PropTypes.string,
+  }).isRequired,
   recordObj: PropTypes.shape({
     id: PropTypes.number,
-    user: PropTypes.shape({
-      id: PropTypes.number,
-      uid: PropTypes.string,
-      name: PropTypes.string,
-      age: PropTypes.string,
-      bio: PropTypes.string,
-      image_url: PropTypes.string,
-      email: PropTypes.string,
-      location: PropTypes.string,
-      localPharmacy: PropTypes.string,
-    }),
     name: PropTypes.string,
     dosage: PropTypes.string,
+    treatment: PropTypes.string,
     datePrescribed: PropTypes.string,
-    physicianId: PropTypes.number,
-    physician: PropTypes.shape({
-      id: PropTypes.number,
-      record: PropTypes.string,
-      name: PropTypes.string,
-      specialty: PropTypes.string,
-      email: PropTypes.string,
-      location: PropTypes.string,
-      phoneNumber: PropTypes.string,
-    }),
   }).isRequired,
 };
 

@@ -8,7 +8,8 @@ function Physicians() {
   const [physicians, setPhysicians] = useState([]);
 
   useEffect(() => {
-    getPhysicians().then((data) => setPhysicians(data));
+    getPhysicians().then(setPhysicians);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

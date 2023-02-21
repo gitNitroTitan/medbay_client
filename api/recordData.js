@@ -8,18 +8,24 @@ const getAllRecords = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getRecordsByUser = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/records?user=${id}`)
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
 const getSingleRecord = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/records/${id}`)
     .then((response) => response.json())
     .then((data) => {
       resolve({
         id: data.id,
-        // board: data.board,
         user: data.user,
         name: data.name,
         dosage: data.dosage,
         treatment: data.treatment,
-        date_prescribed: data.datePrescribed,
+        datePrescribed: data.date_prescribed,
       });
     })
     .catch((error) => reject(error));
@@ -27,7 +33,7 @@ const getSingleRecord = (id) => new Promise((resolve, reject) => {
 
 const updateRecord = (record, id) => new Promise((resolve, reject) => {
   const recordObj = {
-    physician: Number(record.physicianId),
+    // physician: Number(record.physicianId),
     name: record.name,
     dosage: record.dosage,
     treatment: record.treatment,
@@ -45,7 +51,6 @@ const updateRecord = (record, id) => new Promise((resolve, reject) => {
 const createRecord = (user, record) => new Promise((resolve, reject) => {
   const recordObj = {
     user,
-    physician: Number(record.physicianId),
     name: record.name,
     dosage: record.dosage,
     treatment: record.treatment,
@@ -79,5 +84,5 @@ const deleteRecord = (id) => new Promise((resolve, reject) => {
 });
 
 export {
-  getRecords, getAllRecords, updateRecord, getSingleRecord, deleteRecord, createRecord,
+  getRecords, getAllRecords, updateRecord, getSingleRecord, deleteRecord, createRecord, getRecordsByUser,
 };

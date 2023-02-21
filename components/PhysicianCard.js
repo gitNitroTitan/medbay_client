@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
-import { deleteSinglePhysician } from '../api/physicianData';
+import { deletePhysician } from '../api/physicianData';
 
 function PhysicianCard({ physicianObj, onUpdate }) {
   const deleteThisPhysician = () => {
     console.warn(physicianObj);
     if (window.confirm(`Delete ${physicianObj.name}?`)) {
-      // console.warn(physicianObj);
-      deleteSinglePhysician(physicianObj.id).then(() => onUpdate());
+      deletePhysician(physicianObj.id).then(() => onUpdate());
     }
   };
 

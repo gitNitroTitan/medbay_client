@@ -31,7 +31,6 @@ function PhysicianForm({ physicianObj }) {
       updatePhysician(formInput, physicianObj.id, user)
         .then(() => router.push(`/physicians/user/${user.id}`));
     } else {
-      // console.warn(user.id, formInput);
       createPhysician(user.id, formInput).then(() => {
         router.push(`/physicians/user/${user.id}`);
       });
@@ -80,8 +79,8 @@ PhysicianForm.propTypes = {
     name: PropTypes.string,
     specialty: PropTypes.string,
     email: PropTypes.string,
-    location: PropTypes.string,
     phoneNumber: PropTypes.string,
+    location: PropTypes.string,
     user: PropTypes.shape({
       id: PropTypes.number,
       uid: PropTypes.string,

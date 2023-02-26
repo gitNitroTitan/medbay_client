@@ -5,31 +5,37 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 function Search({ records, setFilteredRecords }) {
-  const [search, setSearch] = useState('');
+  const [keyword, setKeyword] = useState('');
 
   const handleChange = (e) => {
-    const { value } = e.target;
-    setSearch(value);
-    const results = records.filter((record) => record.name.toLowerCase().includes(value.toLowerCase()));
+    setKeyword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const results = records.filter((record) => record.treatment.toLowerCase().includes(keyword.toLowerCase()));
     setFilteredRecords(results);
   };
 
   const reset = () => {
-    setSearch('');
-    setFilteredRecords(records);
+    setKeyword('');
+    setFilteredRecords();
   };
 
   return (
     <div className="searchbar">
-      <h5>Search A Specific Medication For Details</h5>
+      <h5>Quick Search A Medication by Diagnosis</h5>
       <InputGroup className="mb-3">
         <Form.Control
           placeholder="Medication"
           aria-label="Medication"
-          value={search}
+          value={keyword}
           onChange={handleChange}
           aria-describedby="basic-addon2"
         />
+        <Button variant="secondary" onClick={handleSubmit}>
+          Submit
+        </Button>
         <Button variant="secondary" onClick={reset}>
           Reset
         </Button>

@@ -35,6 +35,9 @@ export default function NavBar() {
             <Link passHref href={`/records/user/${user.id}`}>
               <Nav.Link>Medications</Nav.Link>
             </Link>
+            <Link passHref href="/user_medication">
+              <Nav.Link>List Meds By User</Nav.Link>
+            </Link>
             <NavDropdown title="Create" id="basic-nav-dropdown">
               <Link passHref href="/physicians/new">
                 <NavDropdown.Item href="#action/3.1">Create Physician</NavDropdown.Item>
@@ -45,9 +48,6 @@ export default function NavBar() {
                 </NavDropdown.Item>
               </Link>
             </NavDropdown>
-            <Link passHref href="/medication_list">
-              <Nav.Link>User Medication List</Nav.Link>
-            </Link>
             <img src={user.image_url} className="round-circle" alt="user profile pic" />
             <Button variant="danger" onClick={signOut}>
               Sign Out

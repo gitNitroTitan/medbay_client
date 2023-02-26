@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import Link from 'next/link';
 import Search from '../components/Search';
 import RecordCardLite from '../components/RecordCardLite';
-import { getAllRecords } from '../api/recordData';
+import { getRecordsByUser } from '../api/recordData';
 import { useAuth } from '../utils/context/authContext';
 
 function Home() {
@@ -13,14 +13,12 @@ function Home() {
   const { user } = useAuth();
 
   const getMedicationsByUser = () => {
-    getAllRecords().then((recordsArray) => {
-      setRecords(recordsArray);
-      setFilteredRecords(recordsArray);
-    });
+    getRecordsByUser(user.id).then(setRecords);
   };
 
   useEffect(() => {
     getMedicationsByUser();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -35,16 +33,13 @@ function Home() {
         }}
       >
         <h1>Hello {user.fbUser.displayName}! </h1>
-        {/* <p>Your Bio: {user.bio}</p> */}
         <br />
-        <p>Please Add A Physician</p>
         <Link href="/physicians/new" passHref>
-          <Button style={{ backgroundColor: '#F1E6D4' }} variant="info" className="m-2">Create New Physician</Button>
+          <Button style={{ backgroundColor: '#F1E6D4' }} variant="info" className="m-2">Add A Physician</Button>
         </Link>
         <br />
-        <p>Add A Medication From A Known Physician</p>
         <Link href="/records/new" passHref>
-          <Button style={{ backgroundColor: '#F1E6D4' }} variant="info" className="m-2">Create Medication Record</Button>
+          <Button style={{ backgroundColor: '#F1E6D4' }} variant="info" className="m-2">Add A Medication Record</Button>
         </Link>
         <br />
         <Search records={records} setFilteredRecords={setFilteredRecords} />

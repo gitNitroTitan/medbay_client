@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { getAllRecords } from '../api/recordData';
+import { getAllUsers } from '../api/userData';
 import RecordCardLite from './RecordCardLite';
 
 function DropdownSearch() {
+  const [users, setUsers] = useState([]);
   const [records, setRecords] = useState([]);
 
   const [formInput, setFormInput] = useState({});
@@ -19,15 +21,13 @@ function DropdownSearch() {
   };
 
   const getMedicationsByUser = () => {
-    getAllRecords(formInput.user?.id).then(setRecords);
-    // console.warn(formInput.user?.id);
+    getAllUsers().then(setUsers);
+    console.warn(users);
+    getAllRecords(users.id).then(setRecords);
   };
 
   useEffect(() => {
-    getAllRecords();
-    getMedicationsByUser(records.user?.id);
-    if (records?.id) setRecords(records);
-    console.warn(records);
+    getMedicationsByUser();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -35,13 +35,13 @@ function DropdownSearch() {
     <div className="searchbar">
       <InputGroup className="mb-3">
         <Form.Select className="mb-3" aria-label="User" name="userId" onChange={handleChange} required>
-          {formInput?.id ? <option value="">{formInput.user?.name}</option> : <option value="">Select User</option>}
+          {records.user?.id ? <option value="">{records.user?.name}</option> : <option value="">Select User</option>}
           {
               records?.map((userTaco) => (
                 <option
                   key={userTaco.user.id}
                   value={userTaco.user.id}
-                  defaultValue={userTaco.user.id === formInput.userId}
+                  defaultValue={userTaco.id === formInput.recordId}
                 >
                   {userTaco.user.name}
                 </option>
@@ -58,20 +58,20 @@ function DropdownSearch() {
   );
 }
 
-DropdownSearch.propTypes = {
-  recordObj: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    dosage: PropTypes.string,
-    treatment: PropTypes.string,
-    datePrescribed: PropTypes.string,
-    userId: PropTypes.number,
-    user: PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-    }),
-  }).isRequired,
-  // setFilteredRecords: PropTypes.func.isRequired,
-};
+// DropdownSearch.propTypes = {
+//   recordObj: PropTypes.shape({
+//     id: PropTypes.number,
+//     name: PropTypes.string,
+//     dosage: PropTypes.string,
+//     treatment: PropTypes.string,
+//     datePrescribed: PropTypes.string,
+//     userId: PropTypes.number,
+//     user: PropTypes.shape({
+//       id: PropTypes.number,
+//       name: PropTypes.string,
+//     }),
+//   }).isRequired,
+// setFilteredRecords: PropTypes.func.isRequired,
+// };
 
 export default DropdownSearch;

@@ -20,7 +20,7 @@ function RecordCard({ recordObj, onUpdate }) {
           <h1>{recordObj.name}</h1>
         </Card.Title>
       </Card.Body>
-      <h4>Dosage: {recordObj.dosage}</h4>
+      <h4>Dosage: {recordObj.dosage} mg</h4>
       <h6>For: {recordObj.treatment}</h6>
       <h6>Prescribed: {recordObj.date_prescribed}</h6>
       <Link href={`/records/edit/${recordObj.id}`} passHref>

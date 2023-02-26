@@ -15,6 +15,13 @@ const getRecordsByUser = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getAllRecordsByUser = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/records?user=${id}`)
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
 const getSingleRecord = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/records/${id}`)
     .then((response) => response.json())

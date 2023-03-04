@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 
 function RecordCardLite({ recordObj }) {
-  console.warn(recordObj);
   return (
     <Card className="text-center">
       <Card.Body>

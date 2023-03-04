@@ -1,5 +1,4 @@
 import { clientCredentials } from '../utils/client';
-import { deleteRecord } from './recordData';
 
 const getPhysicians = () => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/physicians`)
@@ -77,30 +76,6 @@ const deletePhysician = (id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const getPhysicianRecords = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/records?physician=${id}`)
-    .then((response) => response.json())
-    .then(resolve)
-    .catch(reject);
-});
-
-const viewPhysicianDetails = (physicianId) => new Promise((resolve, reject) => {
-  Promise.all([getSinglePhysician(physicianId), getPhysicianRecords(physicianId)])
-    .then(([physicianObject, physicianRecordsArray]) => {
-      resolve({ ...physicianObject, hikes: physicianRecordsArray });
-    }).catch((error) => reject(error));
-});
-
-const deletePhysicianRecords = (physicianId) => new Promise((resolve, reject) => {
-  getPhysicianRecords(physicianId)
-    .then((recordsArray) => {
-      const deleteRecordsPromises = recordsArray.map((record) => deleteRecord(record.id));
-      Promise.all(deleteRecordsPromises).then(() => {
-        deletePhysician(physicianId).then(resolve);
-      });
-    }).catch((error) => reject(error));
-});
-
 export {
-  getPhysicians, createPhysician, updatePhysician, getSinglePhysician, deletePhysician, viewPhysicianDetails, getPhysicianRecords, deletePhysicianRecords, getPhysiciansByUser,
+  getPhysicians, createPhysician, updatePhysician, getSinglePhysician, deletePhysician, getPhysiciansByUser,
 };

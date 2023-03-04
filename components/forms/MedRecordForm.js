@@ -74,17 +74,17 @@ function MedRecordForm({ recordObj }) {
 }
 
 MedRecordForm.propTypes = {
-  user: PropTypes.shape({
-    id: PropTypes.number,
-    uid: PropTypes.string,
-    name: PropTypes.string,
-    age: PropTypes.string,
-    bio: PropTypes.string,
-    image_url: PropTypes.string,
-    email: PropTypes.string,
-    location: PropTypes.string,
-    localPharmacy: PropTypes.string,
-  }).isRequired,
+  // user: PropTypes.shape({
+  //   id: PropTypes.number,
+  //   uid: PropTypes.string,
+  //   name: PropTypes.string,
+  //   age: PropTypes.string,
+  //   bio: PropTypes.string,
+  //   image_url: PropTypes.string,
+  //   email: PropTypes.string,
+  //   location: PropTypes.string,
+  //   localPharmacy: PropTypes.string,
+  // }).isRequired,
   recordObj: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,

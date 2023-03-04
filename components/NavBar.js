@@ -49,7 +49,7 @@ export default function NavBar() {
               </Link>
             </NavDropdown>
             <img src={user.image_url} className="round-circle" alt="user profile pic" />
-            <Button variant="danger" onClick={signOut}>
+            <Button variant="danger" className="signOutBtn" onClick={signOut}>
               Sign Out
             </Button>
           </Nav>

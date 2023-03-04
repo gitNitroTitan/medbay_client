@@ -15,13 +15,6 @@ const getRecordsByUser = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getAllRecordsByUser = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/records?user=${id}`)
-    .then((response) => response.json())
-    .then(resolve)
-    .catch(reject);
-});
-
 const getSingleRecord = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/records/${id}`)
     .then((response) => response.json())
@@ -40,7 +33,6 @@ const getSingleRecord = (id) => new Promise((resolve, reject) => {
 
 const updateRecord = (record, id) => new Promise((resolve, reject) => {
   const recordObj = {
-    // physician: Number(record.physicianId),
     name: record.name,
     dosage: record.dosage,
     treatment: record.treatment,
@@ -74,13 +66,6 @@ const createRecord = (user, record) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const getRecords = () => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/records`)
-    .then((response) => response.json())
-    .then(resolve)
-    .catch(reject);
-});
-
 const deleteRecord = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/records/${id}`, {
     method: 'DELETE',
@@ -91,5 +76,5 @@ const deleteRecord = (id) => new Promise((resolve, reject) => {
 });
 
 export {
-  getRecords, getAllRecords, updateRecord, getSingleRecord, deleteRecord, createRecord, getRecordsByUser,
+  getAllRecords, updateRecord, getSingleRecord, deleteRecord, createRecord, getRecordsByUser,
 };

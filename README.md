@@ -1,44 +1,92 @@
-# React/Next.js Django Auth Template
 
-## Topics
-- [Get Started](#getting-started)
-- [Starting the Project](#starting-the-project)
-___
-## Getting Started
-### Use Template
-#### 1. To get started, click the GREEN "Use this Template" button at the top of the repo
-<img width="915" alt="Screen Shot 2022-07-06 at 12 54 01 PM" src="https://user-images.githubusercontent.com/29741570/177612998-4aac9237-5a1e-4f13-8ae0-468587521564.png">
+    <p align="center"><image src="./public/NomadicityStatic.png" style="height:300px;"></image></p>
 
-#### 2. Make sure YOUR github account is selected in the dropdown and name your project
-<img width="763" alt="Screen Shot 2022-07-06 at 12 54 48 PM" src="https://user-images.githubusercontent.com/29741570/177613126-dd38f678-7553-4f27-8a4a-75680f14d71e.png">
+## The Who, How, and Why
 
-#### 3. Clone your new repo to your local machine
-#### 4. Go to the **NEXT** section
+***
 
-## Starting the Project
-1. Create a Firebase project and set up authentication. Use [these videos](https://vimeo.com/showcase/codetracker-firebase) as a refresher if needed.
-1. Create a `.env` file at the root of the project
-1. Copy/Paste the contents of the `.env.sample` file to your newly created `.env` file.
-1. Copy over all of your Firebase values into the `.env` file.
-1. Open the `package.json` file and change the `name` property to the name of your application, and `author` to  your name.
-1. From your command line, be in the root directory and run `npm install` OR `npm i` for short.
-1. Next, run `npm run prepare`. This command sets up husky to track eslint errors on commit that will make your deploy fail on Netlify.
-1. To start your application, run `npm run dev`. THIS IS THE COMMAND YOU WILL USE TO RUN YOUR DEVELOPMENT SERVER FROM NOW ON.
-1. Open [http://localhost:3000](http://localhost:3000) with your browser.
+* **Primary Features**
 
-### If you see this, you are set to go!
-<img width="450" alt="Screen Shot 2022-07-06 at 1 07 27 PM" src="https://user-images.githubusercontent.com/29741570/177615077-9b6a75bc-0260-4d29-bb88-bd95a3140687.png">
+The application allows a user to create a personal repository to save medications and record personal physicians that can be recalled. The application can be used by multiple users within a family unit, but users can only edit or delete records under their own authenticated repositories.
 
+* **Target Audience**
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+This is for any user that wishes to explore and save hikes with content to their board for later use.
 
-**NOTES:** 
-- If you see the following error, you did not follow all the setup steps correctly and failed to add your Firebase creds. Go back and do that NOW.
+* **Purpose**
 
-<img width="1043" alt="Screen Shot 2022-07-06 at 11 18 45 AM" src="https://user-images.githubusercontent.com/29741570/177612501-c2628f18-4bbd-4de9-aae6-27ffba1172d6.png">
-        
-## Learn More about Next.js
-To learn more about Next.js, take a look at the following resources:
+This project is for users who wish to keep track of their doctors and medications.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* **Getting Started**
+
+You can start testing the product by logging in with your respective Google account or using the guest login button if you only wish to view the project without exploring all functions. If authenticated, use the home page buttons to view all the pins created in a random fashion. The best way to begin is to:
+
+* Create a physician record on the physician form page which can be accessed by using the create physician button or the navbar link to create a physician.
+
+* Create medication records under the medication form page. These medications are stored by user id.
+
+* If a medication is needed to be recalled by diagnosis quickly, there is a keyword search on the landing page.
+
+* The user can view a list of medications and can filter the listed medications by user. These lists cannot be edited from this view.
+
+* Use the sign out button to exit the app.
+
+## Help
+
+***
+
+* **Help**
+
+Users can get help with this project, if needed, by sending a discussion message on the discussions page! Click [here](https://github.com/gitNitroTitan/medbay_client/discussions/5)
+
+* **Contributors**
+
+Jeremiah King
+
+## ERD
+
+***
+
+* **MedBay ERD**
+
+[MedBay ERD Link](https://dbdiagram.io/d/63dc5683296d97641d7e1e58)
+
+## Postman Collection
+
+***
+
+* **MedBay Postman Collection**
+
+[Postman Collection for MedBay Link](https://gold-flare-64538.postman.co/workspace/Rare~ab376e03-d5fb-4954-b1ab-54767d65cf83/collection/21027394-42efa63d-669d-4630-bab5-921aaacfd746?ctx=documentation)
+
+## Wireframes
+
+***
+
+* **MedBay Wireframes**
+
+[MedBay Wireframe Link](https://docs.google.com/presentation/d/1KTENBgcyiVo65-ctSTHZskI1w6stKVZUgXt6m1RKNOU/edit#slide=id.g144de6fcb1f_0_28)  <--Click to view the wireframe.
+
+* Data Outline Doc for Flow
+
+  [Data Outline Link](https://docs.google.com/document/d/1N5pNIEKz2PE9UZ19xet_CZcsqNv5-QMZ2HK2sg0Swb0/edit)
+
+## Flowcharts
+
+***
+
+* **MedBay FigJam Flowchart**
+
+[MedBay Flow Chart Link](https://www.figma.com/file/bEnGPdVzYzP3SggODF6LIk/MedBay?node-id=0%3A1&t=IeUCOQmuuQAOYvcz-0)
+
+## Links to Issue Tickets/ Project Board
+
+***
+
+* **Github MedBay Issue Tickets**
+
+[MedBay Issue Tickets Link](https://github.com/gitNitroTitan/MedBay-client)
+
+* **MedBay Project Board**
+
+[Project Board Link](<https://github.com/users/gitNitroTitan/projects/10>)

@@ -7,7 +7,6 @@ import { deletePhysician } from '../api/physicianData';
 
 function PhysicianCard({ physicianObj, onUpdate }) {
   const deleteThisPhysician = () => {
-    console.warn(physicianObj);
     if (window.confirm(`Delete ${physicianObj.name}?`)) {
       deletePhysician(physicianObj.id).then(() => onUpdate());
     }

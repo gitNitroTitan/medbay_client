@@ -34,7 +34,6 @@ function RegisterForm({ user, updateUser }) {
       ...formData, uid: user.uid,
     };
     registerUser(payload).then(() => updateUser(user.uid)).then(() => router.push('/'));
-    // console.warn(payload);
   };
 
   return (

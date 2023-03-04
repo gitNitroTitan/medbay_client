@@ -35,11 +35,16 @@ function Home() {
         <h1>Hello {user.fbUser.displayName}! </h1>
         <br />
         <Link href="/physicians/new" passHref>
-          <Button style={{ backgroundColor: '#F1E6D4' }} variant="info" className="m-2">Add A Physician</Button>
+          <Button style={{ backgroundColor: '#F1E6D4' }} variant="info" className="indexBtns">
+            <span />
+            <span />
+            <span />
+            <span />Add A Physician
+          </Button>
         </Link>
         <br />
         <Link href="/records/new" passHref>
-          <Button style={{ backgroundColor: '#F1E6D4' }} variant="info" className="m-2">Add A Medication Record</Button>
+          <Button style={{ backgroundColor: '#F1E6D4' }} variant="info" className="indexBtns">Add A Medication Record</Button>
         </Link>
         <br />
         <Search records={records} setFilteredRecords={setFilteredRecords} />

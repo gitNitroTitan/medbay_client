@@ -7,7 +7,6 @@ import { deleteRecord } from '../api/recordData';
 
 function RecordCard({ recordObj, onUpdate }) {
   const deleteThisRecord = () => {
-    // console.warn(recordObj);
     if (window.confirm(`Delete ${recordObj.name}?`)) {
       deleteRecord(recordObj?.id).then(() => onUpdate());
     }

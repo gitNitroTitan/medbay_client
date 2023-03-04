@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../../utils/context/authContext';
-import { getRecords, getSingleRecord } from '../../../api/recordData';
+import { getSingleRecord } from '../../../api/recordData';
 import RecordForm from '../../../components/forms/MedRecordForm';
 
 export default function EditCategory() {
@@ -16,7 +16,7 @@ export default function EditCategory() {
 
   return (
     <div className="edit-cat-form" style={{ height: '45rem', padding: '10%' }}>
-      <RecordForm user={user} recordObj={editRecord} onUpdate={getRecords} />
+      <RecordForm user={user} recordObj={editRecord} onUpdate={editRecord} />
     </div>
   );
 }

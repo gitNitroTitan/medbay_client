@@ -1,5 +1,4 @@
 
-    <p align="center"><image src="./public/NomadicityStatic.png" style="height:300px;"></image></p>
 
 ## The Who, How, and Why
 
@@ -85,8 +84,8 @@ Jeremiah King
 
 * **Github MedBay Issue Tickets**
 
-[MedBay Issue Tickets Link](https://github.com/gitNitroTitan/MedBay-client)
+[MedBay Issue Tickets Link](https://github.com/issues)
 
 * **MedBay Project Board**
 
-[Project Board Link](<https://github.com/users/gitNitroTitan/projects/10>)
+[Project Board Link](https://github.com/users/gitNitroTitan/projects/13/views/1)

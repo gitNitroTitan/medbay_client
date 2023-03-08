@@ -13,7 +13,11 @@ function Search({ records, setFilteredRecords }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const results = records.filter((record) => record.treatment.toLowerCase().includes(keyword.toLowerCase()));
+    const keywords = keyword.split(' ').filter(Boolean);
+    const results = records.filter((record) => keywords.some(() => (
+      record.treatment.toLowerCase().includes(keyword.toLowerCase()) || record.name.toLowerCase().includes(keyword.toLowerCase())
+      || record.dosage.toLowerCase().includes(keyword.toLowerCase())
+    )));
     setFilteredRecords(results);
   };
 
@@ -24,7 +28,7 @@ function Search({ records, setFilteredRecords }) {
 
   return (
     <div className="searchbar">
-      <h5>Quick Search A Medication by Diagnosis</h5>
+      <h5>Quick Search A Medication <br />(Diagnosis, medication name, or dosage in mg)</h5>
       <InputGroup className="mb-3">
         <Form.Control
           placeholder="Medication"

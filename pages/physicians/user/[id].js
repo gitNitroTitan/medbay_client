@@ -19,7 +19,7 @@ export default function PhysicianPage() {
   }, []);
 
   return (
-    <div className="d-flex flex-wrap">
+    <div className="d-flex flex-wrap physicianContainer">
       {physicians?.map((physician) => (
         <PhysicianCard key={physician.id} physicianObj={physician} onUpdate={getPhysicianData} />
       ))}

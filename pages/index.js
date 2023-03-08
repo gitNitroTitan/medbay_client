@@ -32,7 +32,7 @@ function Home() {
           margin: '0 auto',
         }}
       >
-        <h1>Hello {user.fbUser.displayName}! </h1>
+        <h1>Welcome to MedBay<br />{user.fbUser.displayName}! </h1>
         <br />
         <Link href="/physicians/new" passHref>
           <Button style={{ backgroundColor: '#F1E6D4' }} variant="info" className="indexBtns">

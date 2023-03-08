@@ -19,7 +19,7 @@ export default function RecordPage() {
   }, []);
 
   return (
-    <div className="d-flex flex-wrap">
+    <div className="d-flex flex-wrap recordContainer">
       {records?.map((record) => (
         <RecordCard key={record.id} recordObj={record} onUpdate={getRecordData} />
       ))}

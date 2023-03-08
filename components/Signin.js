@@ -17,11 +17,13 @@ function Signin() {
         paddingBlock: '0 5rem',
       }}
     >
-      <h1>Hi there!</h1>
+      <h1>Welcome to MedBay!</h1>
       <p>Click the button below to login!</p>
-      <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
-        Sign In
-      </Button>
+      <div className="welcomeBtn">
+        <Button type="button" size="lg" className="signInBtn" onClick={signIn}>
+          Sign In
+        </Button>
+      </div>
     </div>
   );
 }

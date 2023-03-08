@@ -13,7 +13,7 @@ function RecordCard({ recordObj, onUpdate }) {
   };
 
   return (
-    <Card className="text-center">
+    <Card className="text-center recordCard">
       <Card.Body>
         <Card.Title>
           <h1>{recordObj.name}</h1>

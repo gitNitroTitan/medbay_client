@@ -25,11 +25,17 @@ img {
   border-radius: 35%;
   margin: 5px;
 }
+
+@media (min-width: 1300px){
+.formContainer {
+    max-width: 900px;
+  }
+}
+
 .signOutBtn{
-  display:flex;
   background: #524e4e !important;
   border: hidden !important;
-  margin: 10px 10px 10px 0px;
+  margin: 10px;
   border-radius: 35%;
 }
 .navbar-brand {
@@ -44,22 +50,24 @@ img {
 }
 .round-circle
 {
-  width: 100px;
-  border-radius: 40%;
-  margin-right: 10;
+  max-height: 75px;
+  border-radius: 20%;
+  margin: 10px 10px 10px 80px;
 }
-.signIn {
-  max-width: 100px;
+.signInBtn {
+  max-width: 120px;
   margin-top: 1.5rem;
   margin-bottom: 2rem;
   border-radius: 8%;
 }
+
 .indexBtns {
   background: #524e4e !important;
   color: #fff !important;
   border: hidden !important;
-  border-radius: 25%;
+  border-radius: 5%;
 }
+
 a {
   position: relative;
   display: inline-block;
@@ -73,23 +81,16 @@ a {
   transition: 0.2s;
 }
 
-
-
-a:hover {
+ a:hover {
   color: #255784;
   background: #2196f3;
-  box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
-  transition-delay: 1s;
+  box-shadow: 0 0 5px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
 }
-
 
 a span {
   position: absolute;
   display: block;
 }
-
-
-
 
 a span:nth-child(1) {
   top: 0;
@@ -99,13 +100,10 @@ a span:nth-child(1) {
   background: linear-gradient(90deg, transparent, #2196f3);
 }
 
-
-
 a:hover span:nth-child(1) {
   left: 100%;
-  transition: 1s;
+  transition: 0.25s;
 }
-
 
 a span:nth-child(3) {
   bottom: 0;
@@ -117,11 +115,9 @@ a span:nth-child(3) {
 
 a:hover span:nth-child(3) {
   right: 100%;
-  transition: 1s;
-  transition-delay: 0.5s;
+  transition: 0.5s;
+  /* transition-delay: 0.5s; */
 }
-
-
 
 a span:nth-child(2) {
   top: -100%;
@@ -133,11 +129,8 @@ a span:nth-child(2) {
 
 a:hover span:nth-child(2) {
   top: 100%;
-  transition: 1s;
-  transition-delay: 0.25s;
+  transition: 0.25s;
 }
-
-
 
 a span:nth-child(4) {
   bottom: -100%;
@@ -149,6 +142,14 @@ a span:nth-child(4) {
 
 a:hover span:nth-child(4) {
   bottom: 100%;
-  transition: 1s;
-  transition-delay: 0.75s;
+  transition: 0.5s;
 }
+.physicianContainer, .recordContainer{
+  margin:10px;
+}
+.recordCard, .physicianCard, .recordCardLite{
+  margin: 10px;
+}
+/* .dropdownMedrecordListContainer, .dropdownContainer, .medListContainer{
+  max-width: 400px;
+} */

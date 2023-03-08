@@ -4,14 +4,14 @@ import Card from 'react-bootstrap/Card';
 
 function RecordCardLite({ recordObj }) {
   return (
-    <Card className="text-center">
+    <Card className="text-center recordCardLite">
       <Card.Body>
         <Card.Title>
           <h1>{recordObj?.name}</h1>
         </Card.Title>
       </Card.Body>
-      <h4>Dosage: {recordObj?.dosage}</h4>
-      <Card.Footer className="text-muted">MEDBAY</Card.Footer>
+      <h4>Dosage: {recordObj?.dosage}mg</h4>
+      <Card.Footer />
     </Card>
   );
 }

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-
-// import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { getAllRecords, getRecordsByUser } from '../api/recordData';
+import { getRecordsByUser } from '../api/recordData';
 import { getAllUsers, getUserById } from '../api/userData';
+import createEmail from '../api/emailData';
 import { useAuth } from '../utils/context/authContext';
 
 import RecordCardLite from './RecordCardLite';
@@ -12,10 +12,11 @@ import RecordCardLite from './RecordCardLite';
 function DropdownSearch() {
   const [users, setUsers] = useState([]);
   const [records, setRecords] = useState([]);
+  const [formInput, setFormInput] = useState({});
   const { user } = useAuth();
 
   const getMedicationsByUser = () => {
-    getAllRecords().then(setRecords);
+    getRecordsByUser(user.id).then(setRecords);
   };
 
   const getUsersById = () => {
@@ -29,12 +30,35 @@ function DropdownSearch() {
   }, []);
 
   const handleChange = (e) => {
-    const { value } = e.target;
+    const { name, value } = e.target;
     getRecordsByUser(value).then(setRecords);
+    setFormInput((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (records?.id) {
+      createEmail(formInput).then(() => {
+        // router.push('/user_medication');
+      });
+    }
   };
 
   return (
-    <div className="searchbar">
+    <div className="dropdownContainer">
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Send to:</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" name="name" value={formInput.email} />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Send Email
+        </Button>
+      </Form>
+      <br />
       <InputGroup className="mb-3">
         <Form.Select className="mb-3" aria-label="User" name="userId" onChange={handleChange} required>
           {users.id ? <option value="">{users?.name}</option> : <option value="">Select User</option>}
@@ -50,7 +74,7 @@ function DropdownSearch() {
           }
         </Form.Select>
       </InputGroup>
-      <section className="search-medrecord-container">
+      <section className="dropdownMedrecordListContainer">
         {records?.map((record) => (
           <RecordCardLite key={record?.id} recordObj={record} onUpdate={getUsersById} />
         ))}

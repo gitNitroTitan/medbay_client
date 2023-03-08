@@ -3,11 +3,9 @@ import React from 'react';
 import DropdownSearch from '../components/DropdownSearch';
 
 function UserMedList() {
-  // const [records, setRecords] = useState([]);
-
   return (
-    <div className="formContainer text-center text-dark bg-light mb-3">
-      <div className="card-header">
+    <div className="formContainer text-center text-dark bg-light mb-3medListContainer">
+      <div className="card-header"><br />
         <h3 className="title">User Medication List </h3>
         <div className="card-body">
           <DropdownSearch />

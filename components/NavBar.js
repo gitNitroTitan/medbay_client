@@ -19,9 +19,7 @@ export default function NavBar() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Link passHref href="/">
-          <Navbar.Brand>MEDBAY</Navbar.Brand>
-        </Link>
+        <Navbar.Brand>MEDBAY</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
@@ -36,7 +34,7 @@ export default function NavBar() {
               <Nav.Link>Medications</Nav.Link>
             </Link>
             <Link passHref href="/user_medication">
-              <Nav.Link>List Meds By User</Nav.Link>
+              <Nav.Link>Med List<br />By User</Nav.Link>
             </Link>
             <NavDropdown title="Create" id="basic-nav-dropdown">
               <Link passHref href="/physicians/new">
